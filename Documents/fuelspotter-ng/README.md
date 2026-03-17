@@ -94,3 +94,6 @@ Uses browser Geolocation for distance sorting (HTTPS required in prod).
 4. Update seed data for more stations.
 
 Issues: Fuel scarcity affects millions in Nigeria – contribute stations, accuracy improvements, maps integration!
+
+
+by Olojede Jahnifemi
