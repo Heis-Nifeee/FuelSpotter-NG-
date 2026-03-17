@@ -1,0 +1,24 @@
+import { getStations } from '@/services/stationService'
+import ReportForm from '@/components/ReportForm'
+
+export const revalidate = 120
+
+export default async function ReportPage() {
+  let stations = []
+
+  try {
+    stations = await getStations()
+  } catch {
+    // Non-fatal — form still usable with manual entry
+  }
+
+  return (
+    <div>
+      <h1 className="font-syne font-bold text-2xl mb-1">Submit a Report</h1>
+      <p className="text-fuel-muted text-sm mb-6">
+        Tell other drivers what you see right now. Takes less than 30 seconds.
+      </p>
+      <ReportForm stations={stations} />
+    </div>
+  )
+}

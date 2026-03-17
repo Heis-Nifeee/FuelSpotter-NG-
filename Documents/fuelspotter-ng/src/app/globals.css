@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  body {
+    @apply bg-fuel-bg text-fuel-text antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-fuel-accent text-white font-medium px-5 py-3 rounded-xl 
+           hover:bg-orange-600 active:scale-95 transition-all duration-150 
+           inline-flex items-center gap-2 text-sm;
+  }
+
+  .btn-outline {
+    @apply bg-transparent text-fuel-text border border-fuel-border font-medium 
+           px-5 py-3 rounded-xl hover:bg-fuel-card active:scale-95 
+           transition-all duration-150 inline-flex items-center gap-2 text-sm;
+  }
+
+  .card {
+    @apply bg-fuel-card border border-fuel-border rounded-2xl;
+  }
+
+  .input-field {
+    @apply w-full bg-fuel-bg border border-fuel-border rounded-xl px-4 py-2.5 
+           text-fuel-text text-sm outline-none 
+           focus:border-fuel-accent transition-colors duration-150 
+           placeholder:text-fuel-muted;
+  }
+
+  .badge-available {
+    @apply bg-green-500/15 text-green-400 border border-green-500/30 
+           text-xs font-medium uppercase tracking-wide px-2.5 py-1 rounded-full;
+  }
+
+  .badge-nofuel {
+    @apply bg-red-500/15 text-red-400 border border-red-500/30 
+           text-xs font-medium uppercase tracking-wide px-2.5 py-1 rounded-full;
+  }
+
+  .badge-unknown {
+    @apply bg-yellow-500/15 text-yellow-400 border border-yellow-500/30 
+           text-xs font-medium uppercase tracking-wide px-2.5 py-1 rounded-full;
+  }
+}
