@@ -4,6 +4,7 @@ import { supabase } from './supabaseClient'
  * Fetch all stations, ordered by last_updated descending.
  */
 export async function getStations() {
+  if (!supabase) return []
   const { data, error } = await supabase
     .from('stations')
     .select('*')
@@ -17,6 +18,9 @@ export async function getStations() {
  * Fetch a single station by ID.
  */
 export async function getStationById(id) {
+  if (!supabase) {
+    throw new Error('Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.')
+  }
   const { data, error } = await supabase
     .from('stations')
     .select('*')
@@ -32,6 +36,9 @@ export async function getStationById(id) {
  * Runs as two operations: insert report + update station.
  */
 export async function submitReport({ stationId, fuelStatus, queueLength, comment }) {
+  if (!supabase) {
+    throw new Error('Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.')
+  }
   // 1. Insert into reports table
   const { error: reportError } = await supabase.from('reports').insert({
     station_id: stationId,
@@ -59,6 +66,7 @@ export async function submitReport({ stationId, fuelStatus, queueLength, comment
  * Get the report count for each station (for reliability indicator).
  */
 export async function getReportCounts() {
+  if (!supabase) return {}
   const { data, error } = await supabase
     .from('reports')
     .select('station_id')
@@ -77,6 +85,9 @@ export async function getReportCounts() {
  * Returns the subscription channel so you can unsubscribe later.
  */
 export function subscribeToStations(callback) {
+  if (!supabase) {
+    throw new Error('Supabase is not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.')
+  }
   return supabase
     .channel('stations-changes')
     .on('postgres_changes', { event: '*', schema: 'public', table: 'stations' }, callback)
