@@ -51,8 +51,12 @@ export default async function HomePage() {
           { value: stats.available, label: 'With fuel now' },
           { value: '24/7', label: 'Crowd powered' },
         ].map(stat => (
-          <div key={stat.label} className="card p-5 text-center">
-            <div className="font-syne font-extrabold text-3xl text-fuel-accent mb-1">
+          <div key={stat.label} className="card p-5 text-center flex flex-col items-center justify-center sm:block">
+            <div
+              className={`font-syne font-extrabold text-fuel-accent mb-1 ${
+                stat.value === '24/7' ? 'text-2xl sm:text-3xl' : 'text-3xl'
+              }`}
+            >
               {stat.value}
             </div>
             <div className="text-xs text-fuel-muted">{stat.label}</div>
