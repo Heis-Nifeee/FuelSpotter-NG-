@@ -1,6 +1,9 @@
 import { getStations } from '@/services/stationService'
 import ReportForm from '@/components/ReportForm'
+import { Suspense } from 'react'
 
+
+export const dynamic = 'force-dynamic'
 export const revalidate = 120
 
 export default async function ReportPage() {
@@ -18,7 +21,15 @@ export default async function ReportPage() {
       <p className="text-fuel-muted text-sm mb-6">
         Tell other drivers what you see right now. Takes less than 30 seconds.
       </p>
-      <ReportForm stations={stations} />
+      <Suspense
+        fallback={
+          <div className="card p-6 text-sm text-fuel-muted">
+            Loading report form...
+          </div>
+        }
+      >
+        <ReportForm stations={stations} />
+      </Suspense>
     </div>
   )
 }
