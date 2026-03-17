@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "moduleResolution": "node16",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "ignoreDeprecations": "6.0"  // optional, silences TS6 warnings
   },
   "include": ["next-env.d.ts", "src/**/*"]
 }
